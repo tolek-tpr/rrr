@@ -1,5 +1,7 @@
 #include "rrr_window.hpp"
 
+#include <stdexcept>
+
 namespace rrr {
 
     RrrWindow::RrrWindow(int width, int height, std::string windowName) : width{width}, height{height}, windowName{windowName} {
@@ -20,6 +22,10 @@ namespace rrr {
         window = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr);
     }
 
-
+    void RrrWindow::createWindowSurface(VkInstance instance, VkSurfaceKHR* surface) {
+        if (glfwCreateWindowSurface(instance, window, nullptr, surface) != VK_SUCCESS) {
+            throw std::runtime_error("Failed to create window surface!");
+        }
+    }
 
 }
