@@ -11,7 +11,7 @@ namespace rrr {
     }
 
     TestApp::~TestApp() {
-        vkDestroyPipelineLayout(device.device(), pipelineLayout, nullptr);
+        vkDestroyPipelineLayout(device.getDevice(), pipelineLayout, nullptr);
     }
 
     void TestApp::run() {
@@ -28,7 +28,7 @@ namespace rrr {
         layoutInfo.pushConstantRangeCount = 0;
         layoutInfo.pPushConstantRanges = nullptr;
 
-        if (vkCreatePipelineLayout(device.device(), &layoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {
+        if (vkCreatePipelineLayout(device.getDevice(), &layoutInfo, nullptr, &pipelineLayout) != VK_SUCCESS) {
             throw std::runtime_error("Failed to create pipeline layout!");
         }
     }

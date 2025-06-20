@@ -1,7 +1,7 @@
 #ifndef RRR_PIPELINE_HPP
 #define RRR_PIPELINE_HPP
 
-#include "rrr_device.hpp"
+#include "backend/device.hpp"
 #include <string>
 #include <vector>
 

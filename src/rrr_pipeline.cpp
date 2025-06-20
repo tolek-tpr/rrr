@@ -11,9 +11,9 @@ namespace rrr {
     }
 
     RrrPipeline::~RrrPipeline() {
-        vkDestroyShaderModule(device.device(), vertShaderModule, nullptr);
-        vkDestroyShaderModule(device.device(), fragShaderModule, nullptr);
-        vkDestroyPipeline(device.device(), graphicsPipeline, nullptr);
+        vkDestroyShaderModule(device.getDevice(), vertShaderModule, nullptr);
+        vkDestroyShaderModule(device.getDevice(), fragShaderModule, nullptr);
+        vkDestroyPipeline(device.getDevice(), graphicsPipeline, nullptr);
     }
 
     std::vector<char> RrrPipeline::readFile(const std::string &filepath) {
@@ -95,7 +95,7 @@ namespace rrr {
         pipelineInfo.basePipelineIndex = -1;
         pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
 
-        if (vkCreateGraphicsPipelines(device.device(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &graphicsPipeline) != VK_SUCCESS) {
+        if (vkCreateGraphicsPipelines(device.getDevice(), VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &graphicsPipeline) != VK_SUCCESS) {
             throw std::runtime_error("Failed to create graphics pipeline!");
         }
     }
@@ -106,7 +106,7 @@ namespace rrr {
         createInfo.codeSize = shaderCode.size();
         createInfo.pCode = reinterpret_cast<const uint32_t*>(shaderCode.data());
 
-        if (vkCreateShaderModule(device.device(), &createInfo, nullptr, shaderModule) != VK_SUCCESS) {
+        if (vkCreateShaderModule(device.getDevice(), &createInfo, nullptr, shaderModule) != VK_SUCCESS) {
             throw std::runtime_error("Failed to create shader module!");
         }
     }

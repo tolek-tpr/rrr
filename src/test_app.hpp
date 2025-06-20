@@ -3,7 +3,7 @@
 
 #include "rrr_window.hpp"
 #include "rrr_pipeline.hpp"
-#include "rrr_device.hpp"
+#include "backend/device.hpp"
 #include "rrr_swap_chain.hpp"
 
 #include <memory>
